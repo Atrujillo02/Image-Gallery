@@ -10,10 +10,32 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('searchButton') as HTMLButtonElement;
     const searchInput = document.getElementById('searchInput') as HTMLInputElement;
     const gallery = document.getElementById('gallery') as HTMLDivElement;
+    const logoutButton = document.getElementById('logoutButton') as HTMLButtonElement;
+    const message = document.getElementById('message') as HTMLDivElement;
+
+    function updateUI() {
+        const accessToken = localStorage.getItem('access_token');
+        if (accessToken) {
+            loginButton.style.display = 'none';
+            logoutButton.style.display = 'block';
+        } else {
+            loginButton.style.display = 'block';
+            logoutButton.style.display = 'none';
+        }
+        message.textContent = '';
+    }
+
+    updateUI();
 
     loginButton.addEventListener('click', () => {
         const authUrl = `https://unsplash.com/oauth/authorize?client_id=${accessKey}&redirect_uri=${redirectUri}&response_type=code&scope=public+read_user+write_user+read_photos+write_photos`;
         window.location.href = authUrl;
+    });
+
+    logoutButton.addEventListener('click', () => {
+        localStorage.removeItem('access_token');
+        console.log('logged out');
+        updateUI();
     });
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -31,6 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function fetchPhotos(query: string): void {
         const accessToken = localStorage.getItem('access_token');
         if (!accessToken) {
+            message.textContent = 'You must be logged in to search for photos.';
             console.error('No access token found. Please login first.');
             return;
         }
@@ -49,8 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return response.json();
         })
-        .then(data => displayPhotos(data.results))
-        .catch(error => console.error('Error fetching photos:', error));
+        .then(data => {
+            displayPhotos(data.results);
+            message.textContent = '';
+        })
+        .catch(error => {
+            console.error('Error fetching photos:', error);
+            message.textContent = 'Error fetching photos. Please try again.';
+        });
     }
 
     function displayPhotos(photos: Array<{ urls: { small: string }, description: string }>): void {
@@ -87,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Access token:', data.access_token);
 
             window.history.replaceState({}, document.title, redirectUri);
-
+            updateUI();
         } catch (error) {
             console.error('Error fetching access token:', error);
         }
