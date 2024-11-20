@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     logoutButton.addEventListener('click', () => {
         localStorage.removeItem('access_token');
         console.log('logged out');
+
+        gallery.innerHTML = '';
         updateUI();
     });
 
