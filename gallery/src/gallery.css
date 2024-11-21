@@ -1,0 +1,112 @@
+/* Estilo general */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    padding-top: 30px;
+}
+
+/* Títulos */
+h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* Contenedor de búsqueda y logout */
+.search-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Estilo para el campo de búsqueda y los botones */
+input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 250px;
+}
+
+button {
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#logoutButton {
+    background-color: #f44336;
+}
+
+#logoutButton:hover {
+    background-color: #e53935;
+}
+
+/* Contenedor de resultados */
+.results-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    gap: 15px;
+    width: 80%;
+    max-width: 1200px;
+    margin-bottom: 30px;
+}
+
+.results-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.results-container img:hover {
+    transform: scale(1.05);
+}
+
+/* Mensajes */
+#message {
+    color: red;
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+#gallery {
+    background-color: red;
+    width: 100%;
+    padding: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+#gallery img {
+    width: 300px;
+    height: 300px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
