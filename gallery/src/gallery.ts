@@ -27,35 +27,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function fetchPhotos(query: string): void {
-        
         const url = `${unsplashUrl}?query=${query}`;
         fetch(url, {
             method: 'GET',
             headers: {
-                Authorization: `Bearer ${accessToken}`
-            }
+                Authorization: `Bearer ${accessToken}`,
+            },
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok.');
-            }
-            return response.json();
-        })
-        .then(data => {
-            displayPhotos(data.results);
-            message.textContent = '';
-        })
-        .catch(error => {
-            console.error('Error fetching photos:', error);
-            message.textContent = 'Error fetching photos. Please try again.';
-        });
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                displayPhotos(data.results);
+                message.textContent = '';
+            })
+            .catch(error => {
+                console.error('Error fetching photos:', error);
+                message.textContent = 'Error fetching photos. Please try again.';
+            });
     }
 
-    function displayPhotos(photos: Array<{ urls: { small: string }, description: string }>): void {
+    function displayPhotos(photos: Array<{ urls: { regular: string }, description: string }>): void {
         gallery.innerHTML = '';
         photos.forEach(photo => {
             const img = document.createElement('img');
-            img.src = photo.urls.small;
+            img.src = photo.urls.regular; // URL de la imagen
             img.alt = photo.description || 'Photo';
             gallery.appendChild(img);
         });
