@@ -2,7 +2,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+    background: linear-gradient(to bottom, #fef9c3, #e4e8ff);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,11 +14,12 @@ body {
 
 .container {
     text-align: center;
-    background-color: white;
+    background-color: rgb(222, 217, 217);
     border-radius: 10px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 2rem;
     width: 300px;
+    border: 2px solid black;
 }
 
 h1 {
@@ -35,13 +39,15 @@ p {
     padding: 10px 20px;
     font-size: 1rem;
     color: white;
-    background-color: #0073e6;
+    background-color: #bfa4e1;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     text-transform: uppercase;
+    border: 1px solid rgb(133, 127, 127);
 }
 
 .btn:hover {
-    background-color: #005bb5;
+    background-color: #a085c9;
+    transform: scale(1.05);
 }
