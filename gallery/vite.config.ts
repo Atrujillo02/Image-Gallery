@@ -1,7 +1,9 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  base: '/gallery/',
   server: {
-    port: 3000
+    port: 4173,
+    host: true
   }
 });

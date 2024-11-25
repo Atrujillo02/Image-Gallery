@@ -1,0 +1,8 @@
+services:
+  app:
+    build:
+      context: ./gallery/
+    env_file:
+      - ./gallery/.env
+    ports:
+      - "4173:4173"
